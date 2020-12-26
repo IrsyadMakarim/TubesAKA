@@ -1,34 +1,18 @@
-# Python implementation of the
-# Sorting visualiser: Insertion Sort
-
-# Imports
 import pygame
 import random
 import time
 
 pygame.font.init()
 startTime = time.time()
-n = 51
-# Total window
+n = 151
 screen = pygame.display.set_mode(
     (1024, 768)
 )
 
-# Title and Icon
-pygame.display.set_caption(
-    "SORTING VISUALISER"
-)
+pygame.display.set_caption("SORTING VISUALISER")
 
-# Uncomment below lines for setting
-# up the icon for the visuliser
-# img = pygame.image.load('sorticon.png')
-# pygame.display.set_icon(img)
-
-# Boolean variable to run
-# the program in while loop
 run = True
 
-# Window size and some initials
 width = 1024
 length = 768
 array = [0] * n
@@ -39,18 +23,13 @@ clr = [(0, 204, 102), (255, 0, 0), \
 fnt = pygame.font.SysFont("comicsans", 30)
 fnt1 = pygame.font.SysFont("comicsans", 20)
 
-
-# Function to generate new Array
 def generate_arr():
     for i in range(1, n):
         arr_clr[i] = clr[0]
         array[i] = random.randrange(1, 100)
 
-    # Initially generate a array
 generate_arr()
 
-# Function to refill the
-# updates on the window
 def refill():
     screen.fill((255, 255, 255))
     draw()
@@ -74,9 +53,7 @@ def insertionSort(arr):
         refill()
         arr_clr[i] = clr[0]
 
-# Function to Draw the array values
 def draw():
-    # Text should be rendered
     txt = fnt.render("SORT: PRESS 'ENTER'", \
                      1, (0, 0, 0))
     screen.blit(txt, (20, 20))
@@ -96,16 +73,12 @@ def draw():
     pygame.draw.line(screen, (0, 0, 0), (0, 95), \
                      (1024, 95), 6)
 
-    # Drawing the array values as lines
     for i in range(1, n):
         pygame.draw.line(screen, arr_clr[i], \
                          (boundry_arr * i - 3, 100), \
                          (boundry_arr * i - 3, \
                           array[i] * boundry_grp + 100), element_width)
 
-
-
-# continuously to keep the window open
 while run:
     screen.fill((255, 255, 255))
 

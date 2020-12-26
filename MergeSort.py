@@ -1,4 +1,3 @@
-# Python implementation for visualizing merge sort.
 import pygame
 import random
 import time
@@ -6,21 +5,11 @@ import time
 pygame.font.init()
 startTime = time.time()
 n = 151
-# Total window
 screen = pygame.display.set_mode((900, 650))
 
-# Title and Icon
 pygame.display.set_caption("SORTING VISUALISER")
-# Place any custom png file in same folder as the source code
-# and mention it below and uncomment below two lines.
-# img = pygame.image.load
-# ('E:/Projects / Sorting Visualiser / sorticon.png')
-# pygame.display.set_icon(img)
-
-# Boolean variable to run the program in while loop
 run = True
 
-# Window size
 width = 900
 length = 600
 array = [0] * n
@@ -29,15 +18,13 @@ clr_ind = 0
 clr = [(0, 204, 102), (255, 0, 0),
        (0, 0, 153), (255, 102, 0)]
 fnt = pygame.font.SysFont("comicsans", 30)
+
 fnt1 = pygame.font.SysFont("comicsans", 20)
 
-
-# Generate new Array
 def generate_arr():
     for i in range(1, n):
         arr_clr[i] = clr[0]
         array[i] = random.randrange(1, 100)
-
 
 generate_arr()
 
@@ -48,8 +35,6 @@ def refill():
     pygame.display.update()
     pygame.time.delay(20)
 
-
-# Sorting Algo:Merge sort
 def mergesort(array, l, r):
     mid = (l + r) // 2
     if l < r:
@@ -57,7 +42,6 @@ def mergesort(array, l, r):
         mergesort(array, mid + 1, r)
         merge(array, l, mid,
               mid + 1, r)
-
 
 def merge(array, x1, y1, x2, y2):
     i = x1
@@ -100,14 +84,9 @@ def merge(array, x1, y1, x2, y2):
         else:
             arr_clr[i] = clr[0]
 
-        # Draw the array values
-
-
 def draw():
-    # Text should be rendered
     txt = fnt.render("PRESS" \
                      " 'ENTER' TO PERFORM SORTING.", 1, (0, 0, 0))
-    # Position where text is placed
     screen.blit(txt, (20, 20))
     txt1 = fnt.render("PRESS 'R' FOR NEW ARRAY.",
                       1, (0, 0, 0))
@@ -130,22 +109,16 @@ def draw():
                          (0, boundry_grp * i + 100),
                          (900, boundry_grp * i + 100), 1)
 
-        # Drawing the array values as lines
     for i in range(1, n):
         pygame.draw.line(screen, arr_clr[i], \
                          (boundry_arr * i - 3, 100), \
                          (boundry_arr * i - 3, array[i] * boundry_grp + 100), \
                          element_width)
 
-    # Infinite loop to keep the window open
-
 
 while run:
-    # background
     screen.fill((255, 255, 255))
-    # Event handler stores all event
     for event in pygame.event.get():
-        # If we click Close button in window
         if event.type == pygame.QUIT:
             run = False
         if event.type == pygame.KEYDOWN:
